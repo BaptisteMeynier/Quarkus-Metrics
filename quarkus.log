@@ -1,0 +1,5 @@
+2019-04-05 20:37:06,420 desktop-fui7h3k quarkus-metrics-1.0-SNAPSHOT-runner[9369] INFO  [io.quarkus] (main) Quarkus 0.12.0 started in 0.002s. Listening on: http://[::]:8080
+2019-04-05 20:37:06,420 desktop-fui7h3k quarkus-metrics-1.0-SNAPSHOT-runner[9369] INFO  [io.quarkus] (main) Installed features: [cdi, resteasy, smallrye-metrics]
+2019-04-05 20:37:16,771 desktop-fui7h3k quarkus-metrics-1.0-SNAPSHOT-runner[9369] INFO  [io.sma.met.MetricsRegistryImpl] (XNIO-1 task-1) Register metric [name: org.acme.quarkus.metrics.rs.PrimeNumberChecker.performedChecks, type: counter]
+2019-04-05 20:37:16,771 desktop-fui7h3k quarkus-metrics-1.0-SNAPSHOT-runner[9369] INFO  [io.sma.met.MetricsRegistryImpl] (XNIO-1 task-1) Register metric [name: org.acme.quarkus.metrics.rs.PrimeNumberChecker.checksTimer, type: timer]
+2019-04-05 20:40:52,915 desktop-fui7h3k quarkus-metrics-1.0-SNAPSHOT-runner[9369] INFO  [io.quarkus] (main) Quarkus stopped in 0.001s

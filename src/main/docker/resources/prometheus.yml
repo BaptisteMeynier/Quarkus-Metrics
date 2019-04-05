@@ -29,8 +29,9 @@ scrape_configs:
     - targets: ['localhost:9090']
 
   # this is the configuration to poll metrics from localhost:8080
-  - job_name: 'mp-metrics'
-    scrape_interval: 15s
+  - job_name: 'quarkus'
+    scrape_interval: 2s
+    metrics_path: '/metrics'
 
     static_configs:
       - targets: ['localhost:8080']

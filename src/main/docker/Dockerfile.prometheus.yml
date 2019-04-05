@@ -1,3 +1,3 @@
 FROM prom/prometheus
-COPY prometheus.yml /etc/quarkus-prometheus.yml
+COPY src/main/docker/resources/prometheus.yml /etc/quarkus-prometheus.yml
 
