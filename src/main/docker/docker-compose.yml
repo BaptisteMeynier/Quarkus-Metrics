@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+  grafana:
+    image: grafana/grafana:5.1.0
+    ports:
+      - 3000:3000
+    user: "104"
+
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - metrics-gateway:metrics-gateway
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+
+
+  docker run -d -p 8080:8080 --name quarkus --network demo-net demo/quarkus-metrics
+
+  docker run -d -p 9090:9090 --name prometheus --network demo-net demo/prometheus --config.file /etc/quarkus-prometheus.yml
+
+  docker run -d -p 3000:3000 --name=grafana --network demo-net grafana/grafana

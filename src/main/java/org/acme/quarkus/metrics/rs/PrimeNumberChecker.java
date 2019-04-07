@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-@Path("/")
+@Path("/prime")
 public class PrimeNumberChecker {
 
     private long highestPrimeNumberSoFar = 2;

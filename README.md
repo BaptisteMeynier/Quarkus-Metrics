@@ -13,9 +13,11 @@ docker build -f src/main/docker/Dockerfile.prometheus.yml -t demo/prometheus .
 
 docker network create demo-net
 
-docker run -d -p 8080:8080 --name quarkus --net demo-net demo/quarkus-metrics
+docker run -d -p 8080:8080 --name quarkus --network demo-net demo/quarkus-metrics
 
-docker run -d -p 9090:9090 --name prometheus --net demo-net demo/prometheus
+docker run -d -p 9090:9090 --name prometheus --network demo-net demo/prometheus --config.file /etc/quarkus-prometheus.yml
+
+docker run -d -p 3000:3000 --name=grafana --network demo-net grafana/grafana
 
 
 curl localhost:8080/350
@@ -29,4 +31,8 @@ curl localhost:8080/350154785
 
 
 
+https://blog.payara.fish/consuming-microprofile-metrics-with-prometheus?fbclid=IwAR0IdQESyexf0tGzkXf3WrKiymHlAXACMwRvlNEtPhz1F3AVi-0PDL4ZPqo
+
 docker rm -f $(docker ps -a -q)
+
+docker network inspect demo-net
