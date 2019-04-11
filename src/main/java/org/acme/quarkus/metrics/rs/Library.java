@@ -7,9 +7,11 @@ import org.eclipse.microprofile.metrics.annotation.Metered;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.util.Arrays;
 import java.util.Queue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.stream.Collectors;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
@@ -20,10 +22,16 @@ public class Library {
     private LibraryService libraryService;
 
 
+    @GET
+    @Produces("text/plain")
+    public String getBooks(){
+        return Arrays.asList(libraryService.findAll()).stream().collect(Collectors.joining(", "));
+    }
+
 
     @POST
     @Path("{book}")
-    @Metered(unit = MetricUnits.MINUTES)
+    @Metered(unit = MetricUnits.MINUTES,tags = "book")
     public void addBook(@PathParam("book") String book){
         libraryService.add(book);
     }
@@ -45,7 +53,7 @@ public class Library {
 
 
 
-    @Gauge(unit = MetricUnits.NONE, name = "queueSize")
+    @Gauge(unit = MetricUnits.NONE, name = "queueSize", tags = "book")
     public int getQueueSize() {
         return libraryService.size();
     }
